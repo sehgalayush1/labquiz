@@ -24,7 +24,15 @@ def addExam(request):
 
 
 def addQuestion(request):
-	return HttpResponseRedirect('/teacher/')
+	if request.method == "POST":
+		form = InsertQuestions(request.POST)
+		if form.is_valid():
+			form.save()
+			return HttpResponseRedirect('/teacher/')	#needs to be redirected to the previous page where more can be added easily.
+	else:
+		form = InsertQuestions()
+	return render(request, 'teacher/insertQues.html',{'form':form})
+	
 
 
 def allQuestions(request, id):
