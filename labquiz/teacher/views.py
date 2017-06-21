@@ -18,3 +18,8 @@ def addExam(request):
 
 def addQuestion(request):
 	return HttpResponseRedirect('/teacher/')
+
+
+def allQuestions(request, id):
+	exam = Exam.objects.get(pk=id)
+	return render(request, 'teacher/displayques.html', {'exam': exam})

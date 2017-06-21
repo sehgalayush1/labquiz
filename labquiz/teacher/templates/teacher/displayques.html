@@ -1,0 +1,8 @@
+{% extends 'teacher/header.html' %}
+
+
+{% block content %}
+	{% for ques in exam.question_set.all %}
+		{{ques.question}}<br>
+	{% endfor %}
+{% endblock %}
