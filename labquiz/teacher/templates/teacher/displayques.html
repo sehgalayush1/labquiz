@@ -3,7 +3,7 @@
 
 {% block content %}
 	{% for ques in exam.question_set.all %}
-		<a href="{% url 'editQuestion' ques.id %}">{{ques.question}}</a><br>
+		<a href="{% url 'teacher:editQuestion' ques.id %}">{{ques.question}}</a><br>
 	{% endfor %}
 	<br>
 	<a href="/teacher/addQuestion/"><h2>Add Question</h2></a>
