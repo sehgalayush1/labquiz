@@ -3,9 +3,8 @@
 
 {% block content %}
 {% for exam in exam %}
-	<h3><a href="{% url 'allQuestions' exam.id %}">{{exam}}</a>   </h3>
+	<h3><a href="{% url 'allQuestions' exam.id %}">{{exam}}</a></h3>
 {% endfor %}
 <a href="/teacher/addExam/">Add Exam</a>
-<br>
-<a href="/teacher/addQuestion/">Add Question</a>
+
 {% endblock %}

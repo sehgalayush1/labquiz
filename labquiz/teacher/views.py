@@ -13,7 +13,14 @@ def index(request):
 
 
 def addExam(request):
-	return HttpResponseRedirect('/teacher/')
+	if request.method == "POST":
+		form = AddExam(request.POST)
+		if form.is_valid():
+			form.save()
+			return HttpResponseRedirect('/teacher/')
+	else:
+		form = AddExam()
+	return render(request, 'teacher/addExam.html', {'form':form})
 
 
 def addQuestion(request):

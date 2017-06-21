@@ -5,4 +5,6 @@
 	{% for ques in exam.question_set.all %}
 		{{ques.question}}<br>
 	{% endfor %}
+	<br>
+	<a href="/teacher/addQuestion/"><h2>Add Question</h2></a>
 {% endblock %}

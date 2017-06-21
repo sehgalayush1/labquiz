@@ -1,0 +1,11 @@
+{% extends 'teacher/header.html' %}
+
+
+{% block content %}
+	<h1>Add Exam</h1>
+	<form action="" method="post" enctype = "multipart/form-data" >
+	    {% csrf_token %}
+	    {{ form.as_p }}
+	    <button type="submit">Add</button>
+	</form>
+{% endblock %}
