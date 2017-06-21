@@ -1,5 +1,6 @@
 {% extends 'teacher/header.html' %}
 
+<<<<<<< HEAD
  
 
 {% block content %}
@@ -7,6 +8,7 @@
 <h3> WELCOME {{ user.username }}</h3>
 {% for exam in exam %}
 	<h3><a href="{% url 'teacher:allQuestions' exam.id %}">{{exam}}</a></h3>
+
 {% endfor %}
 <a href="/teacher/addExam/">Add Exam</a>
 

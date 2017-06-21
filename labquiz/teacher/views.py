@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+
 from django.shortcuts import render,redirect
 from .forms import *
 from .models import *
@@ -9,6 +10,7 @@ from django.contrib.auth import authenticate,login
 from django.contrib.auth import logout
 from django.views import generic
 from django.views.generic import View
+
 
 # Create your views here.
 def index(request):
@@ -55,6 +57,7 @@ def editQuestion(request, id):
 	else:
 		form = InsertQuestions(instance=n)
 	return render(request,'teacher/editQues.html', {'form': form})
+
 
 class UserFormView(View):
 	form_class = UserForm
@@ -105,4 +108,5 @@ def register(request):
         "form": form,
     }
     return render(request, 'teacher/home.html', context)
+
 
