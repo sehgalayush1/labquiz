@@ -1,0 +1,11 @@
+{% extends 'teacher/header.html' %}
+
+
+{% block content %}
+{% for exam in exam %}
+	<h3>{{exam}}   </h3>
+{% endfor %}
+<a href="/teacher/addExam/">Add Exam</a>
+<br>
+<a href="/teacher/addQuestion/">Add Question</a>
+{% endblock %}
