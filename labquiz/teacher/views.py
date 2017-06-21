@@ -38,3 +38,16 @@ def addQuestion(request):
 def allQuestions(request, id):
 	exam = Exam.objects.get(pk=id)
 	return render(request, 'teacher/displayques.html', {'exam': exam})
+
+
+def editQuestion(request, id):
+	n = Question.objects.get(id=id)
+	if request.method == "POST":
+		form = InsertQuestions(request.POST,instance=n)
+		if form.is_valid():
+			form.save()
+			exam = Exam.objects.get(pk=id)
+			return render(request, 'teacher/displayques.html', {'exam': exam})
+	else:
+		form = InsertQuestions(instance=n)
+	return render(request,'teacher/editQues.html', {'form': form})
