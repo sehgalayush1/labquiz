@@ -2,7 +2,8 @@
 from __future__ import unicode_literals
 
 
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from .forms import *
 from .models import *
 from django.http import *
@@ -10,6 +11,7 @@ from django.contrib.auth import authenticate,login
 from django.contrib.auth import logout
 from django.views import generic
 from django.views.generic import View
+from django.contrib import messages
 
 
 # Create your views here.
@@ -34,10 +36,12 @@ def addQuestion(request):
 		form = InsertQuestions(request.POST)
 		if form.is_valid():
 			form.save()
-			return HttpResponseRedirect('/teacher/')	#needs to be redirected to the previous page where more can be added easily.
-	else:
-		form = InsertQuestions()
-	return render(request, 'teacher/insertQues.html',{'form':form})
+			messages.success(request, 'New question added!')
+			return HttpResponseRedirect(reverse_lazy('teacher:addQuestion')) #needs to be redirected to the previous page where more can be added easily.
+		else:
+			return render(request, 'error.html')
+	form = InsertQuestions()
+	return render(request, 'teacher/insertQues.html',{'form': form})
 	
 
 

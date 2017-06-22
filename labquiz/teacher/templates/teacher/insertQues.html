@@ -8,4 +8,10 @@
 	    {{ form.as_p }}
 	    <button type="submit">Insert</button>
 	</form>
+	<br><br>
+	{% if messages %}
+  		{% for message in messages %}
+      			<p class="{{ message.tags }}">{{ message }}</p>
+    	{% endfor %}
+	{% endif %}
 {% endblock %}
