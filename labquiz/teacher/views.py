@@ -110,3 +110,26 @@ def register(request):
     return render(request, 'teacher/home.html', context)
 
 
+def login_user(request):
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                
+                return render(request, 'teacher/home.html')
+            else:
+                return render(request, 'teacher/login.html', {'error_message': 'Your account has been disabled'})
+        else:
+            return render(request, 'teacher/login.html', {'error_message': 'Invalid login'})
+    return render(request, 'teacher/login.html')
+
+def logout_user(request):
+    logout(request)
+    form = UserForm(request.POST or None)
+    context = {
+        "form": form,
+    }
+    return render(request, 'teacher/login.html', context)
