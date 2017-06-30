@@ -15,7 +15,7 @@ class UserForm(forms.ModelForm):
 class InsertQuestions(forms.ModelForm):
 	class Meta:
 		model = Question
-		fields = '__all__'
+		fields = ('question', 'option1', 'option2', 'option3', 'option4', 'answer')
 
 
 class AddExam(forms.ModelForm):

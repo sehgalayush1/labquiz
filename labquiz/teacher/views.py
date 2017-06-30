@@ -15,6 +15,7 @@ from django.contrib import messages
 
 
 # Create your views here.
+examId = 0
 def index(request):
 	exam = Exam.objects.all()
 	return render(request, 'teacher/home.html', {'exam': exam})
@@ -35,7 +36,9 @@ def addQuestion(request):
 	if request.method == "POST":
 		form = InsertQuestions(request.POST)
 		if form.is_valid():
-			form.save()
+			f = form.save(commit= False)
+			f.exam = Exam.objects.get(pk=examId)
+			f.save()
 			messages.success(request, 'New question added!')
 			return HttpResponseRedirect(reverse_lazy('teacher:addQuestion')) #needs to be redirected to the previous page where more can be added easily.
 		else:
@@ -47,6 +50,8 @@ def addQuestion(request):
 
 def allQuestions(request, id):
 	exam = Exam.objects.get(pk=id)
+	global examId
+	examId = id
 	return render(request, 'teacher/displayques.html', {'exam': exam})
 
 
