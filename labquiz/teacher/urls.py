@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^addQuestion/$', addQuestion, name = 'addQuestion'),
     url(r'^allQuestions/(\d+)/$', allQuestions, name = 'allQuestions'),
     url(r'^editQuestion/(\d+)/$', editQuestion, name = 'editQuestion'),
+    url(r'^addStaff/$', addStaff, name = 'addStaff'),
 
     url(r'^register/$' , views.UserFormView.as_view() , name = 'register' ), 
     url(r'^register/$', views.register, name='register'),

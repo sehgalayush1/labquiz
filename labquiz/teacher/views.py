@@ -12,13 +12,18 @@ from django.contrib.auth import logout
 from django.views import generic
 from django.views.generic import View
 from django.contrib import messages
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models  import User
 
 
 # Create your views here.
 examId = 0
 def index(request):
-	exam = Exam.objects.all()
-	return render(request, 'teacher/home.html', {'exam': exam})
+	if request.user.is_authenticated():
+		exam = Exam.objects.all()
+		return render(request, 'teacher/home.html', {'exam': exam})
+	else:
+		return HttpResponseRedirect('/')
 
 
 def addExam(request):
@@ -66,6 +71,22 @@ def editQuestion(request, id):
 	else:
 		form = InsertQuestions(instance=n)
 	return render(request,'teacher/editQues.html', {'form': form})
+
+def addStaff(request):
+	if request.method=='POST':
+		username = request.POST['username']
+		password = request.POST['password']
+		print password
+		user = User.objects.create_user(username = username, password = password)
+		user.save()
+		return HttpResponseRedirect('/teacher/addStaff/')
+	else:
+		users = User.objects.all()
+	return render(request, 'teacher/addStaff.html',{'users': users})
+
+
+
+
 
 
 class UserFormView(View):
