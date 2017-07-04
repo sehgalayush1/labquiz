@@ -35,18 +35,21 @@ def register(request):
 		form = StudentForm(request.POST)
 		if form.is_valid():
 			# form.save()
-			username = form.cleaned_data.get('username')
-			email = form.cleaned_data.get('email')
-			password = form.cleaned_data.get('password1')
-			year = form.cleaned_data.get('year')
-			branch = form.cleaned_data.get('branch')
-			mobile = form.cleaned_data.get('mobile')
-			user = User.objects.create_user(username=username, password=password, email=email)
-			user.studentprofile.year = year
-			user.studentprofile.branch = branch
-			user.studentprofile.mobile = mobile
-			user.save()
-			return render(request, 'login/register_success.html', {'name': request.POST['username']})
+			try:
+				username = form.cleaned_data.get('username')
+				email = form.cleaned_data.get('email')
+				password = form.cleaned_data.get('password1')
+				year = form.cleaned_data.get('year')
+				branch = form.cleaned_data.get('branch')
+				mobile = form.cleaned_data.get('mobile')
+				user = User.objects.create_user(username=username, password=password, email=email)
+				user.studentprofile.year = year
+				user.studentprofile.branch = branch
+				user.studentprofile.mobile = mobile
+				user.save()
+				return render(request, 'login/register_success.html', {'name': request.POST['username']})
+			except:
+				return HttpResponse('enter correct details and register only once.')
 			# return HttpResponseRedirect('/')
 	else:
 		form = StudentForm()
