@@ -106,8 +106,8 @@ def register(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                
-                return render(request, 'teacher/home.html')
+                exam = exam.objects.filter(user=request.user)
+                return render(request, 'teacher/home.html',{'exam':exam})
     context = {
         "form": form,
     }
@@ -122,8 +122,8 @@ def login_user(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                
-                return render(request, 'teacher/home.html')
+                exam = exam.objects.filter(user=request.user)
+                return render(request, 'teacher/home.html', {'exam': exam})
             else:
                 return render(request, 'teacher/login.html', {'error_message': 'Your account has been disabled'})
         else:
