@@ -19,8 +19,8 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', TemplateView.as_view(template_name = 'home.html')),
-
+    url(r'^', include('login.urls')),
     url(r'^teacher/', include('teacher.urls', namespace='teacher')),
+    url(r'^student/', include('student.urls'))
 
 ]
