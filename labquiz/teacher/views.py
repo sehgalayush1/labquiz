@@ -27,7 +27,7 @@ def index(request):
 
 
 def addExam(request):
-	if request.username.is_authenticated():
+	if request.user.is_authenticated():
 		if request.method == "POST":
 			form = AddExam(request.POST)
 			if form.is_valid():

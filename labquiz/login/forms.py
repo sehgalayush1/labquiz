@@ -8,6 +8,9 @@ class StudentForm(forms.ModelForm):
 	email = forms.CharField(widget=forms.EmailInput(attrs={'class':'form-control'}), max_length = 30, required = True)
 	password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control'}), max_length = 30, required = True)
 	password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control'}),	max_length = 30, required = True)
+	year = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}), max_length = 30, required = True)
+	branch = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}), max_length = 30, required = True)
+	mobile = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}), max_length = 30, required = True)
 	#for converting Char into Password Field
 	
 	def clean_username(self):
