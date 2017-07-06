@@ -1,4 +1,5 @@
 from django.conf.urls import url
+<<<<<<< HEAD
 from .views import *
 
 from . import views
@@ -20,4 +21,3 @@ urlpatterns = [
     # url(r'^logout_user/$', views.logout_user, name='logout_user'),
 
     
-]
