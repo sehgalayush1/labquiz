@@ -16,11 +16,13 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models  import User
 
 
+
 # Create your views here.
 examId = 0
 def index(request):
 	if request.user.is_authenticated():
 		exam = Exam.objects.all()
+		print exam
 		return render(request, 'teacher/home.html', {'exam': exam})
 	else:
 		return HttpResponseRedirect('/')
