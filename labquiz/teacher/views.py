@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 
+
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from .forms import *
@@ -101,6 +102,7 @@ def addStaff(request):
 		return render(request, 'teacher/addStaff.html',{'users': users})
 	else:
 		return HttpResponseRedirect('/')
+
 
 
 

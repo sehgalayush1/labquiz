@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
+from django.http import HttpResponse, HttpResponseRedirect ,Http404
 from django.shortcuts import render
+from django.contrib.auth.models  import User
+from .models import *
+
 
 from teacher.models import Exam,Question
 
@@ -22,3 +25,4 @@ def allQuestions(request, id):
 		return render(request, 'student/question.html', {'exam': exam})
 	else:
 		return HttpResponseRedirect('/')
+
