@@ -1,0 +1,24 @@
+{% extends 'student/header.html' %}
+{% block navbar2 %}
+<li><a href="/addStaff/"><span class="glyphicon glyphicon-user"></span> Add Staff</a></li>
+<li><a href="/logout/"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+{% endblock %}
+
+
+{% block content %}
+	{% for ques in exam.question_set.all %}
+		<h3>{{ques.question}}</h3><br>
+    <h4>{{ques.option1}}</h4><br>
+    <h4>{{ques.option2}}</h4><br>
+    <h4>{{ques.option3}}</h4><br>
+    <h4>{{ques.option4}}</h4><br>
+    <form action="">
+ <h4>Answer</h4><br>
+ <input type="text" ><br><br>
+
+ <input type="submit" value="Submit">
+</form>
+	{% endfor %}
+	<br>
+
+{% endblock %}

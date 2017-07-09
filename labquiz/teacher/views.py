@@ -56,7 +56,7 @@ def addQuestion(request):
 		return render(request, 'teacher/insertQues.html',{'form': form})
 	else:
 		return HttpResponseRedirect('/')
-	
+
 
 
 def allQuestions(request, id):
@@ -90,7 +90,7 @@ def addStaff(request):
 		if request.method=='POST':
 			username = request.POST['username']
 			password = request.POST['password']
-			print password
+		
 			user = User.objects.create_user(username = username, password = password)
 			user.save()
 			return HttpResponseRedirect('/teacher/addStaff/')
@@ -134,7 +134,7 @@ def addStaff(request):
 # 					login(request, user)
 # 					return redirect('/teacher/') # after log in get them redirected to home page
 
-# 		return render(request, self.template_name, {'form' : form})	
+# 		return render(request, self.template_name, {'form' : form})
 
 # def register(request):
 #     form = UserForm(request.POST or None)
@@ -148,7 +148,7 @@ def addStaff(request):
 #         if user is not None:
 #             if user.is_active:
 #                 login(request, user)
-                
+
 #                 return render(request, 'teacher/home.html')
 #     context = {
 #         "form": form,
@@ -164,7 +164,7 @@ def addStaff(request):
 #         if user is not None:
 #             if user.is_active:
 #                 login(request, user)
-                
+
 #                 return render(request, 'teacher/home.html')
 #             else:
 #                 return render(request, 'teacher/login.html', {'error_message': 'Your account has been disabled'})
