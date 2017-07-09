@@ -1,0 +1,18 @@
+{% extends 'teacher/header.html' %}
+{% block navbar2 %}
+<li><a href="{% url 'teacher:addStaff' %}"><span class="glyphicon glyphicon-user"></span> Add Staff</a></li>
+<li><a href="/logout/"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+{% endblock %}
+
+ 
+
+{% block content %}
+
+<h3> WELCOME {{ user.username }}</h3>
+{% for exam in exam %}
+	<h3><a href="{% url 'teacher:allQuestions' exam.id %}">{{exam}}</a></h3>
+
+{% endfor %}
+<a href="/teacher/addExam/">Add Exam</a>
+
+{% endblock %}
