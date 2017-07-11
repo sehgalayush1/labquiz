@@ -14,7 +14,7 @@
 
 <h3> WELCOME {{ user.username }}</h3>
 {% for exam in exam %}
-	<h3><a href="{% url 'teacher:allQuestions' exam.id %}">{{exam}}</a></h3>
+	<h3><a href="{% url 'teacher:allQuestions' exam.id %}">{{exam}}</a> <h4>Max. Marks: <small>{{exam.total_marks}}</small></h4></h3><hr>
 
 {% endfor %}
 <a href="/teacher/addExam/">Add Exam</a>
