@@ -9,7 +9,7 @@ urlpatterns = [
     url(r'^auth_student/$', auth_view_student, name = 'checkstudent'),
     url(r'^register/$', register, name = 'register'),
     url(r'^invalid/$', TemplateView.as_view(template_name = 'login/invalid.html')),
-    url(r'^logout/$', logout),
+    url(r'^logout/$', logout, name = 'logout'),
 
 
 ]

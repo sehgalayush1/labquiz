@@ -3,19 +3,30 @@
 
 
 {% block content %}
-	{% for ques in exam.question_set.all %}
-		<h3>{{ques.question}}</h3><br>
-    <h4>{{ques.option1}}</h4><br>
-    <h4>{{ques.option2}}</h4><br>
-    <h4>{{ques.option3}}</h4><br>
-    <h4>{{ques.option4}}</h4><br>
-    <form action="">
- <h4>Answer</h4><br>
- <input type="text" ><br><br>
 
- <input type="submit" value="Submit">
+<form action="" method="post" enctype = "multipart/form-data">
+{% csrf_token %}
+{% for ques in exam.question_set.all %}
+	<h3>{{ques.question}}</h3>
+    
+    	<div class="checkbox">
+	      <label><input type="checkbox" value="">{{ques.option1}}</label>
+	    </div>
+	    <div class="checkbox">
+	      <label><input type="checkbox" value="">{{ques.option2}}</label>
+	    </div>
+	    <div class="checkbox">
+	      <label><input type="checkbox" value="">{{ques.option3}}</label>
+	    </div>
+	    <div class="checkbox">
+	      <label><input type="checkbox" value="">{{ques.option4}}</label>
+	    </div>
+
+		 <!..needs to provide name attribute to all the checkboxes and get those values in views
+		 by fetching them from name. This will be done by js or jquery..>
+	
+{% endfor %}
+<input type="submit" value="Submit">
 </form>
-	{% endfor %}
-	<br>
 
 {% endblock %}

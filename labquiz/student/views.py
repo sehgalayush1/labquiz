@@ -5,8 +5,8 @@ from django.shortcuts import render
 from django.contrib.auth.models  import User
 from teacher.models import Exam,Question
 from django.http import *
+import result
 
-examId=0
 def dashboard(request):
 	if request.user.is_authenticated():
 		exam = Exam.objects.all()
@@ -17,8 +17,11 @@ def dashboard(request):
 def allQuestions(request, id):
 	if request.user.is_authenticated():
 		exam = Exam.objects.get(pk=id)
-		global examId
-		examId = id
-		return render(request, 'student/questions.html', {'exam': exam})
+		if request.method=='POST':
+			count = Question.objects.filter(exam=exam).count()
+			result.function(count, request)
+			return HttpResponse('success')
+		else:
+			return render(request, 'student/questions.html', {'exam': exam})
 	else:
 		return HttpResponseRedirect('/')
