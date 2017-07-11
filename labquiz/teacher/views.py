@@ -49,9 +49,15 @@ def addQuestion(request):
 				f = form.save(commit= False)
 				f.exam = exam_obj
 				f.save()
-				exam_obj.total_marks = int(exam_obj.total_marks) + exam_obj.marks_per_question
-				exam_obj.save()
-				
+				try:
+					exam_obj.total_marks = int(exam_obj.total_marks) + exam_obj.marks_per_question
+					exam_obj.save()
+					print 'try'
+				except:
+					exam_obj.total_marks = exam_obj.marks_per_question
+					exam_obj.save()
+					print 'except'
+
 				messages.success(request, 'New question added!')
 				return HttpResponseRedirect(reverse_lazy('teacher:addQuestion')) #needs to be redirected to the previous page where more can be added easily.
 			else:
