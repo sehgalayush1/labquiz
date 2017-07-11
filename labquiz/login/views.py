@@ -22,7 +22,14 @@ def auth_view(request):
 
 
 def auth_view_student(request):
-	pass
+	username = request.POST['username']
+	password = request.POST['password']
+	user = auth.authenticate(username=username, password=password)
+	if user is not None:
+		auth.login(request, user)
+	else:
+		return HttpResponseRedirect('/invalid/')
+	return HttpResponseRedirect('/student/')
 
 
 def logout(request):

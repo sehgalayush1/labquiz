@@ -4,6 +4,8 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from django.contrib.auth.models  import User
 from teacher.models import Exam,Question
+from django.http import *
+
 examId=0
 def dashboard(request):
 	if request.user.is_authenticated():
