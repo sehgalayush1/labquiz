@@ -52,11 +52,9 @@ def addQuestion(request):
 				try:
 					exam_obj.total_marks = int(exam_obj.total_marks) + exam_obj.marks_per_question
 					exam_obj.save()
-					print 'try'
 				except:
 					exam_obj.total_marks = exam_obj.marks_per_question
 					exam_obj.save()
-					print 'except'
 
 				messages.success(request, 'New question added!')
 				return HttpResponseRedirect(reverse_lazy('teacher:addQuestion')) #needs to be redirected to the previous page where more can be added easily.
@@ -74,7 +72,14 @@ def allQuestions(request, id):
 		exam = Exam.objects.get(pk=id)
 		global examId
 		examId = id
-		return render(request, 'teacher/displayques.html', {'exam': exam})
+		if request.method=='POST':
+			form = AddExam(request.POST, instance=exam)
+			if form.is_valid():
+				form.save()
+				return HttpResponseRedirect('/teacher/')
+		else:
+			form = AddExam(instance=exam)
+		return render(request, 'teacher/displayques.html', {'exam': exam, 'form':form})
 	else:
 		return HttpResponseRedirect('/')
 
