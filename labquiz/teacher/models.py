@@ -15,6 +15,8 @@ answerChoices = (
 
 class Exam(models.Model):
     name = models.CharField(max_length=100,default="")
+    marks_per_question = models.IntegerField(default=1)
+    total_marks = models.IntegerField(null=True, blank=True)
 
     def __unicode__(self):
         return self.name

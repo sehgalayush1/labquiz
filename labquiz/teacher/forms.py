@@ -9,10 +9,12 @@ from .models import *
 class InsertQuestions(forms.ModelForm):
 	class Meta:
 		model = Question
-		fields = ('question', 'option1', 'option2', 'option3', 'option4', 'answer')
+		fields = '__all__'
+		exclude = ['exam']
 
 
 class AddExam(forms.ModelForm):
 	class Meta:
 		model = Exam
 		fields = '__all__'
+		exclude = ['total_marks']
