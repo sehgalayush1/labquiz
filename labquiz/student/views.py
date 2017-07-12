@@ -19,7 +19,15 @@ def allQuestions(request, id):
 		exam = Exam.objects.get(pk=id)
 		if request.method=='POST':
 			count = Question.objects.filter(exam=exam).count()
-			result.function(count, request)
+			quess = Question.objects.filter(exam=exam)
+			# for i in range(count):
+			# 	ques_id = quess[i].id
+			# 	name = 'op_' + str(ques_id)
+			# 	print ques_id
+			# 	responses = request.POST.get(ques_id)
+			# 	print responses
+			# 	print request.POST
+			result.function(count, request, exam) #present in result.py file
 			return HttpResponse('success')
 		else:
 			return render(request, 'student/questions.html', {'exam': exam})

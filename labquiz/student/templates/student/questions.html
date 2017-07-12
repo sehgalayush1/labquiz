@@ -4,29 +4,44 @@
 
 {% block content %}
 
-<form action="" method="post" enctype = "multipart/form-data">
+<form action="" method="post" enctype = "multipart/form-data" name = "quizForm" onsubmit="return submitAnswers()">
 {% csrf_token %}
 {% for ques in exam.question_set.all %}
 	<h3>{{ques.question}}</h3>
     
     	<div class="checkbox">
-	      <label><input type="checkbox" value="">{{ques.option1}}</label>
+	      <label><input type="checkbox" value="1" name = {{ques.id}}>{{ques.option1}}</label>
 	    </div>
 	    <div class="checkbox">
-	      <label><input type="checkbox" value="">{{ques.option2}}</label>
+	      <label><input type="checkbox" value="2" name = {{ques.id}}>{{ques.option2}}</label>
 	    </div>
 	    <div class="checkbox">
-	      <label><input type="checkbox" value="">{{ques.option3}}</label>
+	      <label><input type="checkbox" value="3" name = {{ques.id}}>{{ques.option3}}</label>
 	    </div>
 	    <div class="checkbox">
-	      <label><input type="checkbox" value="">{{ques.option4}}</label>
+	      <label><input type="checkbox" value="4" name = {{ques.id}}>{{ques.option4}}</label>
 	    </div>
 
 		 <!..needs to provide name attribute to all the checkboxes and get those values in views
 		 by fetching them from name. This will be done by js or jquery..>
-	
+<!-- <script type="text/javascript">
+	var id = {{ques.id}}
+	var op1 = ''+ id;
+	var op2 = ''+ id;
+	var op3 = ''+ id;
+	var op4 = ''+ id;
+	$('.id').attr('name', op1);
+	$('.id').attr('name', op2);
+	$('.id').attr('name', op3);
+	$('.id').attr('name', op4);
+
+</script> -->	
 {% endfor %}
 <input type="submit" value="Submit">
 </form>
+<script type="text/javascript">
+	
+</script>
+
 
 {% endblock %}
