@@ -54,14 +54,15 @@ def exam(request, exam_name):
 		
 		# Store all the user's answers in a dictionary
 		for question in questions:
-			answers[question.question] = request.POST[question.question]
-		
+			answers[question.question] = request.POST.getlist(question.question)
+		print answers
 		# Check answers and calculate the score
 		score = 0
 		marks_per_question = exam.marks_per_question
 		negative_marks = exam.negative_marks
 		for question in questions:
-			if int(answers[question.question] == question.answer[0]):
+			print question.answer[0]
+			if int(answers[question.question] == question.answer):
 				score += marks_per_question
 			else:
 				score -= negative_marks
