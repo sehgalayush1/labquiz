@@ -31,3 +31,42 @@ def allQuestions(request, id):
 			return render(request, 'student/questions.html', {'exam': exam})
 	else:
 		return HttpResponseRedirect('/')
+
+
+def exam(request, exam_name):
+	'''
+	View renders all the questions of an exam in a template and handles
+	the response sent by the user after taking the exam.
+	'''
+	# Handle the uninvited guests
+	if not request.user.is_authenticated():
+		return HttpResponseRedirect('/')
+
+	# Fetch the exam passed in url from db
+	exam = Exam.objects.get(name=exam_name)
+
+	# Handle the response data
+	if request.method == 'POST':
+		questions = exam.question_set.all()
+		answers = {}
+		
+		# Store all the user's answers in a dictionary
+		for question in questions:
+			answers[question.question] = request.POST.getlist(question.question)
+		print answers
+		# Check answers and calculate the score
+		score = 0
+		marks_per_question = exam.marks_per_question
+		negative_marks = exam.negative_marks
+		for question in questions:
+			print question.answer[0]
+			if int(answers[question.question] == question.answer):
+				score += marks_per_question
+			else:
+				score -= negative_marks
+		
+		return HttpResponse(score)
+	
+	# Display all the questions to the user
+	context = { 'exam': exam }
+	return render(request, 'student/show_questions.html', context)

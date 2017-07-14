@@ -7,7 +7,7 @@
 
 <h3> WELCOME {{ user.username }}</h3>
 {% for exam in exam %}
-	<h3><a href="{% url 'student:allQuestions' exam.id %}">{{exam}}</a></h3>
+	<h3><a href="{% url 'student:exam' exam.name %}">{{ exam.name }}</a></h3>
 
 {% endfor %}
 
