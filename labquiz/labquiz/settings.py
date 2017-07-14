@@ -78,10 +78,22 @@ WSGI_APPLICATION = 'labquiz.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+# using mysql in place of sqlite3.
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+# to include mysql as the database, change password for your mysql server
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'db.mysql'),
+        'USER': 'root',
+        'PASSWORD': '0000',     
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
     }
 }
 
