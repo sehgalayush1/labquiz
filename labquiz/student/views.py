@@ -62,6 +62,8 @@ def exam(request, exam_name):
 			print question.answer[0]
 			if int(answers[question.question] == question.answer):
 				score += marks_per_question
+			elif(answers[question.question] == []):
+				pass
 			else:
 				score -= negative_marks
 		
