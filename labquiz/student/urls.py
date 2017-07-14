@@ -5,4 +5,5 @@ from .views import *
 urlpatterns = [
     url(r'^$', dashboard, name = 'dashboard'),
     url(r'^allQuestions/(\d+)/$', allQuestions, name = 'allQuestions'),
+    url(r'^exams/(?P<exam_name>[ \w]+)/$', exam, name='exam'),
 ]

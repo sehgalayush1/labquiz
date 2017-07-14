@@ -1,0 +1,23 @@
+{% extends "student/header.html" %}
+
+{% block content %}
+
+    {% if exam %}
+        <h1>{{ exam.name }}</h1>
+        <form method="post">
+            {% csrf_token %}
+            {% for question in exam.question_set.all %}
+                <p>{{ forloop.counter }} {{ question.question }}</p>
+                <br>
+                <input type="radio" value="1" name="{{ question.question }}"> {{ question.option1 }}</input><br>
+                <input type="radio" value="2" name="{{ question.question }}"> {{ question.option2 }}</input><br>
+                <input type="radio" value="3" name="{{ question.question }}"> {{ question.option3 }}</input><br>
+                <input type="radio" value="4" name="{{ question.question }}"> {{ question.option4 }}</input><br>
+                <br><br>
+            {% endfor %}
+            <input type="submit" value="Submit">
+        </form>
+    {% else %}
+    {% endif %}
+
+{% endblock content %}
