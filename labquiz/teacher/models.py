@@ -29,7 +29,7 @@ class Question(models.Model):
     option2 = models.CharField(max_length=50, default="")
     option3 = models.CharField(max_length=50, default="")
     option4 = models.CharField(max_length=50, default="")
-    answer = MultiSelectField(choices=answerChoices, null=False, blank=False)
+    answer = MultiSelectField(choices=answerChoices, null=False, blank=False,max_choices=1)
     exam = models.ForeignKey(Exam)
 
     def __unicode__(self):
