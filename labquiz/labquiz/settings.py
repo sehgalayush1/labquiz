@@ -11,10 +11,15 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import environ
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# Import environ variables
+env = environ.Env()
+env.read_env()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
@@ -41,7 +46,6 @@ INSTALLED_APPS = [
     'login',
     'student',
     'multiselectfield',
-
 ]
 
 MIDDLEWARE = [
@@ -88,12 +92,12 @@ WSGI_APPLICATION = 'labquiz.wsgi.application'
 # to include mysql as the database, change password for your mysql server
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.mysql'),
-        'USER': 'root',
-        'PASSWORD': '0000',     
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWD'),     
+        'HOST': env('DB_HOST'),
+        'PORT': env('DB_PORT'),
     }
 }
 
